@@ -5,7 +5,11 @@
 <div class="container">
   <div class="table-container">
     <mat-card>
-      <button mat-raised-button color="primary" (click)="openVehicleDialog()">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="openVehicleDialog(false)"
+      >
         ADD
       </button>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -35,7 +39,11 @@
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let element">
             <a href="javascript:void(0)">
-              <mat-icon inline aria-hidden="false" aria-label="Edit"
+              <mat-icon
+                inline
+                aria-hidden="false"
+                aria-label="Edit"
+                (click)="openVehicleDialog(true, element)"
                 >edit</mat-icon
               >
             </a>

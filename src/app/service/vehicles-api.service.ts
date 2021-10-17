@@ -41,11 +41,16 @@ export class VehiclesApiService {
   }
   addVehicles(item: any): Observable<VehicleResource> {
     return this.http
-      .post<VehicleResource>(this.basePath, this.httpOptions)
+      .post<VehicleResource>(`${this.basePath}/create`,JSON.stringify(item), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
   deleteVehicle(id: number): Observable<any>{
     return this.http.delete<Vehicle>(`${this.basePath}/id/${id}`,this.httpOptions)
     .pipe(retry(2), catchError(this.handleError));
+  }
+  updateVehicle(id: number, item:any): Observable<Vehicle>{
+    return this.http
+    .put<Vehicle>(`${this.basePath}/id/${id}`,JSON.stringify(item),this.httpOptions)
+    .pipe(retry(2),catchError(this.handleError));
   }
 }

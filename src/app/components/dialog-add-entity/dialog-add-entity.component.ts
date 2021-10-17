@@ -7,6 +7,7 @@ export interface VehicleDialog {
   category: string;
   type: string;
   number: number;
+  id: number;
 }
 
 @Component({
