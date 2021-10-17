@@ -1,12 +1,14 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable, throwError} from 'rxjs';
+import {Vehicle} from '../models/vehicle';
+import { catchError , retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehiclesApiService {
-  basePath = 'http://localhost:8080/api';
+  basePath = 'http://localhost:8080/api/vehicles';
   constructor( private http: HttpClient ) { }
 
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
@@ -18,7 +20,12 @@ export class VehiclesApiService {
     }else{
       console.log(`Backend returned code ${error.status}, body was: ${error.error}`);
     }
-    return throwError('Something happened with requestk plase try again later.');
+    return throwError('Something happened with request please try again later.');
+  }
+
+  getAllStudent():Observable<Vehicle>{
+    return this.http.get<Vehicle>(this.basePath)
+    .pipe( retry(2), catchError(this.handleError));
   }
 
 }
