@@ -15,6 +15,7 @@ import { DialogAddEntityComponent } from './components/dialog-add-entity/dialog-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [AppComponent, DialogAddEntityComponent],
@@ -31,7 +32,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent],

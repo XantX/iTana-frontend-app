@@ -14,11 +14,11 @@ import { VehiclesApiService } from './service/vehicles-api.service';
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'frontend-application';
   displayedColumns: string[] = [
-    'actions',
     'year',
     'category',
     'type',
     'number',
+    'actions',
   ];
   vehicleData: Vehicle;
 
@@ -41,8 +41,21 @@ export class AppComponent implements OnInit, AfterViewInit {
   getAllVehicles(): void {
     this.vehiclesApi.getAllVehicles().subscribe((response: any) => {
       this.dataSource.data = response;
+      this.dataSource.data = this.dataSource.data.reverse();
     });
   }
+  refresh():void{
+    this.getAllVehicles();
+  }
+  deleteVehicle(id: number):void{
+    this.vehiclesApi.deleteVehicle(id).subscribe(()=>{
+      this.dataSource.data = this.dataSource.data.filter((o: any)=>{
+        return o.id !== id? o :false;
+      })
+    })
+    this.refresh();
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddEntityComponent, {
       width: '350px',
