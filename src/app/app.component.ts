@@ -45,8 +45,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddEntityComponent, {
-      width: '250px',
+      width: '350px',
       data: {
+        status: false,
         year: this.vehicleData.year,
         category: this.vehicleData.category,
         type: this.vehicleData.type,
@@ -54,11 +55,13 @@ export class AppComponent implements OnInit, AfterViewInit {
       },
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.vehicleData.year = result.year;
-      this.vehicleData.number = result.number;
-      this.vehicleData.type = result.type;
-      this.vehicleData.category = result.category;
-      console.log(this.vehicleData);
+      if (result != null){
+        this.vehicleData.year = result.year;
+        this.vehicleData.number = result.number;
+        this.vehicleData.type = result.type;
+        this.vehicleData.category = result.category;
+        console.log(this.vehicleData);
+      }
     })
   }
 }

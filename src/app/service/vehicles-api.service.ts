@@ -2,6 +2,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable, throwError} from 'rxjs';
 import {Vehicle} from '../models/vehicle';
+import {VehicleResource} from '../models/vehicle-resource';
 import { catchError , retry } from 'rxjs/operators';
 
 @Injectable({
@@ -27,8 +28,8 @@ export class VehiclesApiService {
     return this.http.get<Vehicle>(this.basePath)
     .pipe( retry(2), catchError(this.handleError));
   }
-  addVehicles(item: any):Observable<Vehicle>{
-    return this.http.post<Vehicle>(this.basePath,this.httpOptions)
+  addVehicles(item: any):Observable<VehicleResource>{
+    return this.http.post<VehicleResource>(this.basePath,this.httpOptions)
     .pipe(retry(2),catchError(this.handleError));
   }
 
