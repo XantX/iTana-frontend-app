@@ -1,8 +1,12 @@
 table {
   margin-top: 3%;
-  width: 80%;
+  width: 100%;
 }
 .container{
+  height: 100vh;
   display: flex;
   justify-content: center;
+}
+.table-container{
+  width: 80%;
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {VehiclesApiService} from './service/vehicles-api.service';
 
@@ -8,12 +9,18 @@ import {VehiclesApiService} from './service/vehicles-api.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'frontend-application';
   displayedColumns: string[] = ['actions','year', 'category', 'type', 'number'];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   dataSource = new MatTableDataSource();
 
   constructor(private vehiclesApi: VehiclesApiService ){
+  }
+  ngAfterViewInit(): void{
+    this.dataSource.paginator = this.paginator;
   }
   ngOnInit():void{
     this.getAllVehicles();
