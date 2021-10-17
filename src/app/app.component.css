@@ -3,10 +3,10 @@ table {
   width: 100%;
 }
 .container{
-  height: 100vh;
   display: flex;
   justify-content: center;
 }
 .table-container{
+  margin-top: 2%;
   width: 80%;
 }

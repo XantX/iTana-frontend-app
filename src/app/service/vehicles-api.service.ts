@@ -27,5 +27,9 @@ export class VehiclesApiService {
     return this.http.get<Vehicle>(this.basePath)
     .pipe( retry(2), catchError(this.handleError));
   }
+  addVehicles(item: any):Observable<Vehicle>{
+    return this.http.post<Vehicle>(this.basePath,this.httpOptions)
+    .pipe(retry(2),catchError(this.handleError));
+  }
 
 }
