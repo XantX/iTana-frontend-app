@@ -44,6 +44,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getAllVehicles();
   }
+  applyFilter(event:Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
   getAllVehicles(): void {
     this.vehiclesApi.getAllVehicles().subscribe((response: any) => {
       this.dataSource.data = response;
@@ -124,6 +132,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
   openDeleteDialog(element: any): void {
     const dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '350px',

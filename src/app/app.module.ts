@@ -16,7 +16,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { DialogDeleteComponent } from './component/dialog-delete/dialog-delete.component'
+import { DialogDeleteComponent } from './component/dialog-delete/dialog-delete.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [AppComponent, DialogAddEntityComponent, DialogDeleteComponent],
@@ -34,7 +35,8 @@ import { DialogDeleteComponent } from './component/dialog-delete/dialog-delete.c
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent],
