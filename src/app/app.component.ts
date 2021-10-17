@@ -1,21 +1,27 @@
-import { Component } from '@angular/core';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { Component, OnInit } from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table';
+import {VehiclesApiService} from './service/vehicles-api.service';
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-];
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+
+export class AppComponent implements OnInit {
   title = 'frontend-application';
   displayedColumns: string[] = ['actions','year', 'category', 'type', 'number'];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource();
+
+  constructor(private vehiclesApi: VehiclesApiService ){
+  }
+  ngOnInit():void{
+    this.getAllVehicles();
+  }
+  getAllVehicles(): void{
+    this.vehiclesApi.getAllVehicles().subscribe((response: any )=>{
+      this.dataSource.data = response;
+    })
+    
+  }
 }

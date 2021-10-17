@@ -23,7 +23,7 @@ export class VehiclesApiService {
     return throwError('Something happened with request please try again later.');
   }
 
-  getAllStudent():Observable<Vehicle>{
+  getAllVehicles():Observable<Vehicle>{
     return this.http.get<Vehicle>(this.basePath)
     .pipe( retry(2), catchError(this.handleError));
   }
