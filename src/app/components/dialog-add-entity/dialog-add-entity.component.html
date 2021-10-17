@@ -18,6 +18,6 @@
   </mat-form-field>
 </div>
 <div mat-dialog-content>
-  <button mat-button (click)="onNoClick()" color="warn">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial color="primary">Create</button>
+  <button mat-button (click)="onNoClick()" color="warn">CANCEL</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial color="primary">{{data.status? 'EDIT': 'CREATE'}}</button>
 </div>

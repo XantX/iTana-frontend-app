@@ -50,14 +50,28 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.dataSource.data = this.dataSource.data.reverse();
     });
   }
+
+  refresh(): void {
+    this.getAllVehicles();
+    this.vehicleData = {} as Vehicle;
+    this.vehicleResourceData = {} as VehicleResource;
+  }
+
+  convertVehicleDataToResource(): void {
+    this.vehicleResourceData.year = this.vehicleData.year;
+    this.vehicleResourceData.number = this.vehicleData.number;
+    this.vehicleResourceData.type = this.vehicleData.type;
+    this.vehicleResourceData.category = this.vehicleData.category;
+  }
   createVehicle(): void {
     this.vehiclesApi
       .addVehicles(this.vehicleResourceData)
       .subscribe((response: any) => {
-        this.dataSource.data.push([...response]);
+        this.dataSource.data = this.dataSource.data.reverse();
+        this.dataSource.data.push({...response});
         this.dataSource.data = this.dataSource.data.map((o) => o);
+        this.dataSource.data = this.dataSource.data.reverse();
       });
-    this.refresh();
   }
   updateVehicle(): void {
     this.vehiclesApi
@@ -71,18 +85,12 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
       });
   }
-  refresh(): void {
-    this.getAllVehicles();
-    this.vehicleData = {} as Vehicle;
-    this.vehicleResourceData = {} as VehicleResource;
-  }
   deleteVehicle(id: number): void {
     this.vehiclesApi.deleteVehicle(id).subscribe(() => {
       this.dataSource.data = this.dataSource.data.filter((o: any) => {
         return o.id !== id ? o : false;
       });
     });
-    this.refresh();
   }
   openVehicleDialog(editMode: boolean, element: any = {} as Vehicle): void {
     const dialogRef = this.dialog.open(DialogAddEntityComponent, {
@@ -107,9 +115,11 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.convertVehicleDataToResource();
         console.log(this.vehicleResourceData);
         if (editMode) {
-          console.log('Modo editar');
+          this.updateVehicle();
+          console.log('Editado');
         } else {
-          console.log('Modo no editor');
+          this.createVehicle();
+          console.log('Creado');
         }
       }
     });
@@ -133,11 +143,5 @@ export class AppComponent implements OnInit, AfterViewInit {
         console.log('No pasa nada');
       }
     });
-  }
-  convertVehicleDataToResource(): void {
-    this.vehicleResourceData.year = this.vehicleData.year;
-    this.vehicleResourceData.number = this.vehicleData.number;
-    this.vehicleResourceData.type = this.vehicleData.type;
-    this.vehicleResourceData.category = this.vehicleData.category;
   }
 }
