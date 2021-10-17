@@ -1,0 +1,18 @@
+<div mat-dialog-title>
+  <mat-icon color="warn">delete</mat-icon>
+  <h2>
+    Are you sure you want to <b style="color:red;">DELETE</b>  this data?
+  </h2>
+</div>
+<div mat-dialog-content>
+  <p><b>Year:</b> {{ data.year }}</p>
+  <p><b>Category:</b> {{ data.category }}</p>
+  <p><b>Type:</b> {{ data.type }}</p>
+  <p><b>Number:</b> {{ data.number }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">CANCEL</button>
+  <button mat-raised-button  color="warn" [mat-dialog-close]="!data.delete">
+    DELETE
+  </button>
+</div>

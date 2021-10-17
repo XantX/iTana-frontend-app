@@ -15,10 +15,11 @@ import { DialogAddEntityComponent } from './components/dialog-add-entity/dialog-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { DialogDeleteComponent } from './component/dialog-delete/dialog-delete.component'
 
 @NgModule({
-  declarations: [AppComponent, DialogAddEntityComponent],
+  declarations: [AppComponent, DialogAddEntityComponent, DialogDeleteComponent],
   imports: [
     FormsModule,
     BrowserAnimationsModule,

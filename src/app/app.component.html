@@ -5,7 +5,7 @@
 <div class="container">
   <div class="table-container">
     <mat-card>
-      <button mat-raised-button color="primary" (click)="openDialog()">
+      <button mat-raised-button color="primary" (click)="openVehicleDialog()">
         ADD
       </button>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -44,7 +44,7 @@
                 color="warn"
                 inline
                 aria-hidden="false"
-                (click)="deleteVehicle(element.id)"
+                (click)="openDeleteDialog(element)"
                 aria-label="Delete"
                 >delete</mat-icon
               >

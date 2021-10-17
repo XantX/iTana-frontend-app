@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import {DialogDeleteComponent} from './component/dialog-delete/dialog-delete.component';
 import { DialogAddEntityComponent } from './components/dialog-add-entity/dialog-add-entity.component';
 import { Vehicle } from './models/vehicle';
 import { VehiclesApiService } from './service/vehicles-api.service';
@@ -56,7 +57,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.refresh();
   }
 
-  openDialog(): void {
+  openVehicleDialog(): void {
     const dialogRef = this.dialog.open(DialogAddEntityComponent, {
       width: '350px',
       data: {
@@ -77,4 +78,25 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     })
   }
+  openDeleteDialog(element: any):void {
+    const dialogRef = this.dialog.open(DialogDeleteComponent,{
+      width: '350px',
+      data: {
+        year: element.year,
+        category: element.category,
+        type: element.type,
+        number: element.number,
+        delete: false,
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        console.log(`se borrara:${element.id}`)
+        this.deleteVehicle(element.id);
+      }else{
+        console.log("No pasa nada")
+      }
+    })
+  }
+
 }
