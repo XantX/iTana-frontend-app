@@ -16,6 +16,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AppComponent {
   title = 'frontend-application';
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['actions','year', 'category', 'type', 'number'];
   dataSource = ELEMENT_DATA;
 }
