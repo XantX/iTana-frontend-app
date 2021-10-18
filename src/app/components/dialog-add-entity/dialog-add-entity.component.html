@@ -4,20 +4,21 @@
     <mat-label>Year</mat-label>
     <input
       type="number"
+      min="0"
+      max="9999"
       matInput
       [(ngModel)]="data.year"
-      #message
+      #messageYear
       maxlength="4"
       required
     />
-    <mat-hint align="end">{{ message.value.length }}/4</mat-hint>
-    <mat-hint *ngIf="ExistError" >{{ErrorMessage}}</mat-hint>
+    <mat-hint align="end">{{ messageYear.value.length }}/4</mat-hint>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Type</mat-label>
-    <input matInput [(ngModel)]="data.type" #mesage maxlength="70" />
-    <mat-hint align="end">{{ message.value.length }}/70</mat-hint>
+    <input matInput [(ngModel)]="data.type" #messageType maxlength="70" required />
+    <mat-hint align="end">{{ messageType.value.length }}/70</mat-hint>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -26,16 +27,21 @@
       type="number"
       matInput
       [(ngModel)]="data.number"
-      #message
+      #messageNumber
+      min="0"
       maxlength="9"
+      required
     />
-    <mat-hint align="end">{{ message.value.length }}/9</mat-hint>
+    <mat-hint align="end">{{ messageNumber.value.length }}/9</mat-hint>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Category</mat-label>
-    <input matInput [(ngModel)]="data.category" #message maxlength="70" />
-    <mat-hint align="end">{{ message.value.length }}/70</mat-hint>
+    <input matInput [(ngModel)]="data.category" #messageCategory maxlength="70" required />
+    <mat-hint align="end">{{ messageCategory.value.length }}/70</mat-hint>
   </mat-form-field>
+</div>
+<div class="error-message">
+  <h3 *ngIf="!isValidData">{{ errorMessage }}</h3> 
 </div>
 <div mat-dialog-content>
   <button mat-button (click)="onNoClick()" color="warn">CANCEL</button>
